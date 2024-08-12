@@ -5,9 +5,15 @@ import Spinner from './Spinner2';
 export class News extends Component{
 
     
-
-    constructor(){
-        super();
+    capitalizeFirstLetter= (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    updateTitle(){
+        
+        document.title=`${this.capitalizeFirstLetter(this.props.category)} - NewsFox`;
+    }
+    constructor(props){
+        super(props);
         this.state={
             articles: [],
             loading: false,
@@ -24,6 +30,7 @@ export class News extends Component{
         // Fetch new articles if the category prop has changed
         if (prevProps.category !== this.props.category) {
             this.setState({ page: 1 }, this.fetchArticles);
+            this.updateTitle();
         }
     }
 
@@ -61,7 +68,7 @@ export class News extends Component{
     render() {
         return (
             <div className='container my-4'>
-                <h1 className="text-center" style={{ margin: '40px' }}>NewsFox - Top Headlines</h1>
+                <h1 className="text-center" style={{ margin: '40px' }}>NewsFox - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
                 {this.state.loading && <Spinner />}
                 <div className="row mt-4">
                     {!this.state.loading && this.state.articles.map((element) => {

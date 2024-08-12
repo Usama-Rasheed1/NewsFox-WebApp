@@ -21,7 +21,7 @@ export default class App extends Component {
 
         <Routes>
 
-          <Route exact path="/" element={<News category="." pageNo={this.pageNum} />} />
+          <Route exact path="/" element={<News category="news" pageNo={this.pageNum} />} />
           <Route exact path="/General" element={<News category="general" pageNo={this.pageNum} />} />
           <Route exact path="/Business" element={<News category="business" pageNo={this.pageNum} />} />
           <Route exact path="/Entertainment" element={<News category="entertainment" pageNo={this.pageNum} />} />
