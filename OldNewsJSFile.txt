@@ -1,0 +1,267 @@
+import React, { Component } from 'react'
+import NewsItem from './NewsItem'
+import Spinner from './Spinner2';
+import { PropTypes } from 'prop-types';
+
+export class News extends Component {
+
+    static defaultProps = {
+        category:'general'
+    }
+    static propTypes = {
+        category: PropTypes.string
+    }
+    articles = [
+        {
+            "source": {
+                "id": "associated-press",
+                "name": "Associated Press"
+            },
+            "author": "RIO YAMAT and JOSH BOAK",
+            "title": "In Las Vegas, Kamala Harris sees a chance to improve her odds of winning",
+            "description": "LAS VEGAS (AP) — Vice President Kamala Harris is working to make Nevada look like less of a political gamble in November's election.The Democratic presidential nominee visits the state on Saturday with her running mate, Minnesota Gov.",
+            "url": "https://apnews.com/ac21118dbb24290e46d32ad9669507d4",
+            "urlToImage": "https://storage.googleapis.com/afs-prod/media/d16525e1b20a44dcba0757be98f76a96/3000.jpeg",
+            "publishedAt": "2024-08-10T04:01:25Z",
+            "content": "LAS VEGAS (AP) — Vice President Kamala Harris is working to make Nevada look like less of a political gamble in November's election.The Democratic presidential nominee visits the state on Saturday wi… [+4445 chars]"
+        },
+        {
+            "source": {
+                "id": "google-news",
+                "name": "Google News"
+            },
+            "author": "POLITICO",
+            "title": "The other Black politician who says he was with Trump in that near-fatal chopper crash - POLITICO",
+            "description": "Some news from Me",
+            "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdHlkME5vc0hMZm8tVVlYRGNjc01fczQ2Vzl1ZUxXZTVtM2tFUGpRd3pYeXlsRGFfYTVKMUpCSGk1Y0o5aGgydUtreWoyQVpWNDhVRDJudUZsU1JfNWQ1N3RZVTNOdkhRNjBHZk5DNzVHM3BHM0ducEE1LUVyV0M2UlZKNmk?oc=5",
+            "urlToImage": null,
+            "publishedAt": "2024-08-10T02:56:55+00:00",
+            "content": null
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Kaitlan Collins",
+            "title": "Maggie Haberman discusses Trump lashing out at her over helicopter story | CNN Politics",
+            "description": "New York Times reporter Maggie Haberman discusses a phone call she had with former President Donald Trump following a story that questioned his claim that he was in a helicopter crash with former San Francisco Mayor Willie Brown.",
+            "url": "https://www.cnn.com/2024/08/09/politics/video/maggie-haberman-donald-trump-helicopter-phone-call-src-digvid",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/20240809-haberman-trump.jpg?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2024-08-10T01:58:34.761Z",
+            "content": "New York Times reporter Maggie Haberman discusses a phone call she had with former President Donald Trump following a story that questioned his claim that he was in a helicopter crash with former San… [+29 chars]"
+        },
+        {
+            "source": {
+                "id": "breitbart-news",
+                "name": "Breitbart News"
+            },
+            "author": "Nick Gilbertson",
+            "title": "Graham: Brian Kemp to Give Trump His 'Political Machine' to 'Win' Georgia",
+            "description": "Gov. Brian Kemp (R-GA) is ready to put his \"political machine\" behind former President Donald Trump in Georgia, Sen. Lindsey Graham says.",
+            "url": "https://www.breitbart.com/2024-election/2024/08/09/graham-georgia-gov-brian-kemp-all-in-for-donald-trump-will-give-trump-his-political-machine/",
+            "urlToImage": "https://media.breitbart.com/media/2024/08/Brian-Kemp-Will-Support-Trump-640x335.jpeg",
+            "publishedAt": "2024-08-09T21:40:40Z",
+            "content": "Gov. Brian Kemp (R-GA) is ready to put his “political machine” behind former President Donald Trump in Georgia, according to Sen. Lindsey Graham (R-SC).\r\nGraham told Fox News’s Hannity Thursday night… [+1900 chars]"
+        },
+        {
+            "source": {
+                "id": "abc-news-au",
+                "name": "ABC News (AU)"
+            },
+            "author": "Andrea Mayes",
+            "title": "The Linda Reynolds and Brittany Higgins case offers a personal glimpse into the emotional toll of politics",
+            "description": "In amidst the courtroom mud-slinging stand two women, both scarred by their experiences in the aftermath of an event that happened more than five years ago, and each blaming the other.",
+            "url": "https://www.abc.net.au/news/2024-08-10/linda-reynolds-brittany-higgins-david-sharaz-defamation-analysis/104202256",
+            "urlToImage": "https://live-production.wcms.abc-cdn.net.au/43f202a80871219c3aec6e71c0e982ac?impolicy=wcms_watermark_news&cropH=998&cropW=1775&xPos=44&yPos=82&width=862&height=485&imformat=generic",
+            "publishedAt": "2024-08-09T21:08:57Z",
+            "content": "Politics is a dirty game.\r\nNot for the Faint Hearted was the title of Kevin Rudd's 2017 memoir about his career in politics and he should know, having suffered the ignominy of being knifed by his own… [+5558 chars]"
+        },
+        {
+            "source": {
+                "id": "usa-today",
+                "name": "USA Today"
+            },
+            "author": "Joey Garrison",
+            "title": "Tim Walz's working-class cred: no stocks, no bonds, and he doesn't own a home",
+            "description": "Tim Walz's personal finances are an anomaly in US presidential politics: He has no stocks, bonds, or private equity, and he doesn't even own a home.",
+            "url": "https://www.usatoday.com/story/news/politics/elections/2024/08/09/tim-walz-no-stocks-bonds-home-ownership/74725632007/",
+            "urlToImage": "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/08/09/USAT/74737731007-gty-2165424783.jpg?crop=3630,2042,x0,y189&width=3200&height=1801&format=pjpg&auto=webp",
+            "publishedAt": "2024-08-09T20:54:14+00:00",
+            "content": "WASHINGTON Tim Walz's personal finances are something of an anomaly in presidential politics: He has no investments. No bonds. No stock holdings. No real estate. And he does not currently own a home.… [+5934 chars]"
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Josephine Hitchings",
+            "title": "Key swing voters react to Trump’s remark about Harris’ race | CNN Politics",
+            "description": "Wisconsin swing voters who went for Donald Trump in 2016 and Joe Biden in 2020 participated in a focus group to talk about Harris’ campaign and Trump’s controversial remark about Harris’ race at NABJ.",
+            "url": "https://www.cnn.com/2024/08/09/politics/video/donald-trump-kamala-harris-race-swing-voters-digvid",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/focusgroup.jpg?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2024-08-09T17:50:15.587Z",
+            "content": "Wisconsin swing voters who went for Donald Trump in 2016 and Joe Biden in 2020 participated in a focus group to talk about Harris' campaign and Trump's controversial remark about Harris' race at NABJ."
+        },
+        {
+            "source": {
+                "id": "il-sole-24-ore",
+                "name": "Il Sole 24 Ore"
+            },
+            "author": "",
+            "title": "Così Berlino rafforza l’industria militare: Stato nelle aziende di armi, investimenti rapidi",
+            "description": "La svolta nelle politiche dell’esecutivo tedesco è stata dettata dalla volontà di fronteggiare la minaccia russa",
+            "url": "https://24plus.ilsole24ore.com/art/cosi-berlino-rafforza-l-industria-militare-stato-aziende-armi-investimenti-rapidi-AFWoTJID?s=hpf",
+            "urlToImage": "https://i2.res.24o.it/images2010/S24/Documenti/2024/08/09/Immagini/Ritagli/2024-07-24T094511Z_1424069070_RC2QD1AKKA6D_RTRMADP_5_RHEINMETALL-RESULTS-U43428165347yoX-1440x752@IlSole24Ore-Web.JPG?r=1440x752",
+            "publishedAt": "2024-08-09T16:33:03Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": "al-jazeera-english",
+                "name": "Al Jazeera English"
+            },
+            "author": "Justin Salhani",
+            "title": "Hamas has a new political chief. What will Yahya Sinwar mean for Gaza?",
+            "description": "Ceasefire negotiations could still progress with Sinwar at the helm, but the Israeli side has been a roadblock.",
+            "url": "https://www.aljazeera.com/news/2024/8/9/hamas-has-a-new-political-chief-what-will-yahya-sinwar-mean-for-gaza",
+            "urlToImage": "https://www.aljazeera.com/wp-content/uploads/2021/05/h_56754666.jpg?resize=1920%2C1440",
+            "publishedAt": "2024-08-09T16:16:06Z",
+            "content": "Hamas this week appointed Yahya Sinwar, the groups top official in Gaza, as the new leader of its political bloc following the assassination last week of political chief Ismail Haniyeh. The assassina… [+6956 chars]"
+        },
+        {
+            "source": {
+                "id": "time",
+                "name": "Time"
+            },
+            "author": "Justin Worland/ Green Charter  Township, Mich.",
+            "title": "How to Avoid A Climate Backlash",
+            "description": "The energy transition hangs in the balance, as green policies fuel right-wing politics",
+            "url": "http://time.com/6998407/climate-backlash-how-to-avoid/",
+            "urlToImage": "https://api.time.com/wp-content/uploads/2024/07/WGREEN240805_005_illo.jpg?quality=85&w=1200&h=628&crop=1",
+            "publishedAt": "2024-07-30T12:00:00Z",
+            "content": "Six months after being ousted as the supervisor of Green Charter Township in rural western Michigan, Jim Chapman is sitting at the dining table in his sons house, a haven from the dirty looks and dea… [+23566 chars]"
+        },
+        {
+            "source": {
+                "id": "fox-news",
+                "name": "Fox News"
+            },
+            "author": "Fox News",
+            "title": "Political cartoons of the day",
+            "description": "Political cartoons of the day",
+            "url": "https://www.foxnews.com/politics/politics-cartoons-slideshow",
+            "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2024/08/8.9.24.png",
+            "publishedAt": "2024-07-29T13:05:35Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": "ansa",
+                "name": "ANSA.it"
+            },
+            "author": "ANSA.it",
+            "title": "Draghi, ora integrazione Ue attraverso un processo politico - Ultima Ora",
+            "description": "L'ex presidente del consiglio ed ex presidente della Bce, Mario Draghi, chiede di accelerare l'integrazione Ue non più con un metodo \"tecnocratico\" come nel caso della nascita dell'euro che \"ha avuto successo\" ma attraverso un \"genuino processo politico do...…",
+            "url": "http://www.ansa.it/sito/notizie/topnews/2023/07/11/draghi-ora-integrazione-ue-attraverso-un-processo-politico_12cd0724-fe48-4bac-b3fc-88f5e6cf5838.html",
+            "urlToImage": "https://www.ansa.it/webimages/img_700/2022/10/23/e0e3edd0163e4a00f301592ec252495c.jpg",
+            "publishedAt": "2023-07-11T20:24:00Z",
+            "content": "Se hai scelto di non accettare i cookie di profilazione e tracciamento, puoi aderire all’abbonamento \"Consentless\" a un costo molto accessibile, oppure scegliere un altro abbonamento per accedere ad … [+320 chars]"
+        },
+        {
+            "source": {
+                "id": "the-american-conservative",
+                "name": "The American Conservative"
+            },
+            "author": null,
+            "title": "Politics Archives - The American Conservative",
+            "description": "null",
+            "url": "https://www.theamericanconservative.com/category/politics/",
+            "urlToImage": null,
+            "publishedAt": "2022-07-07T21:37:27.3936289Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": "the-jerusalem-post",
+                "name": "The Jerusalem Post"
+            },
+            "author": null,
+            "title": "Congresswoman Nita Lowey: I am proud to stand with Israel",
+            "description": "Gantz: Security of Israel is above politics; PA: This is a crime.",
+            "url": "https://www.jpost.com/Arab-Israeli-Conflict/Gantz-Security-of-Israel-is-above-politics-Palestinians-This-is-a-crime-607595",
+            "urlToImage": "https://images.jpost.com/image/upload/f_auto,fl_lossy/t_Article2016_ControlFaceDetect/448812",
+            "publishedAt": "2019-11-13T04:41:00Z",
+            "content": "US Ambassador David M. Friedman said the US stands “with our friend and ally Israel at this critical moment” on social media on Tuesday after roughly 170 rockets were fired on Israel from the Gaza St… [+6160 chars]"
+        }
+    ];
+    constructor(){
+        super();
+        this.state={
+            articles: [],
+            loading:false,
+            page:1
+        }
+    }
+    async componentDidMount(){
+        let url = `https://newsapi.org/v2/top-headlines?q=${this.props.category}&apiKey=8a333109df7045e4b0d4dbf0b1b9d221`;
+        this.setState({loading: true});
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({articles:parsedData.articles,
+            totalResults:parsedData.totalResults,
+            loading:false
+        })
+
+    }
+    handlePrevClick = async()=>{
+            let url = `https://newsapi.org/v2/top-headlines?q=${this.props.category}&apiKey=8a333109df7045e4b0d4dbf0b1b9d221&page=${this.state.page - 1}&pageSize=6`;        
+            this.setState({loading: true});
+            let data = await fetch(url);
+            let parsedData = await data.json();
+            this.setState({
+                page:this.state.page-1,
+                articles:parsedData.articles,
+                loading:false
+            })
+
+    }
+    handleNextClick = async()=>{
+        if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/6))){
+            let url = `https://newsapi.org/v2/top-headlines?q=${this.props.category}&apiKey=8a333109df7045e4b0d4dbf0b1b9d221&page=${this.state.page + 1}&pageSize=6`;        
+            this.setState({loading: true});
+            let data = await fetch(url);
+            let parsedData = await data.json();
+            this.setState({
+                page:this.state.page+1,
+                articles:parsedData.articles,
+                loading:false
+            })
+        }
+    }
+
+  render() {
+    return (
+      <div className='container my-4'>
+        <h1 className="text-center" style={{margin:'40px'}}>NewsFow - Top Headlines</h1>
+        {this.state.loading && <Spinner/>}
+        <div className="row mt-4">
+            {!this.state.loading && this.state.articles.map((element)=>{
+                return <div className="col-md-4" key={element.url}>
+                    <NewsItem title={element.title?element.title.slice(0,45):""} description={element.description?element.description.slice(0,88):""} imgUrl={element.urlToImage} newsUrl={element.url}/>
+                </div>
+            })}
+        </div>
+
+        <div className='container d-flex justify-content-between'>
+            <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Prev</button>
+            <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/6)}  type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
+
+        </div>
+      </div>
+      
+    )
+  }
+}
+
+export default News
