@@ -12,7 +12,7 @@ import {
 
 export default class App extends Component {
   static propTypes = {}
-
+  pageNum=6;
   render() {
     return (
       <Router>
@@ -21,14 +21,14 @@ export default class App extends Component {
 
         <Routes>
 
-          <Route exact path="/" element={<News category="." />} />
-          <Route exact path="/General" element={<News category="general" />} />
-          <Route exact path="/Business" element={<News category="business" />} />
-          <Route exact path="/Entertainment" element={<News category="entertainment" />} />
-          <Route exact path="/Health" element={<News category="health" />} />
-          <Route exact path="/Science" element={<News category="science" />} />
-          <Route exact path="/Sports" element={<News category="sports" />} />
-          <Route exact path="/Technology" element={<News category="technology" />} />
+          <Route exact path="/" element={<News category="." pageNo={this.pageNum} />} />
+          <Route exact path="/General" element={<News category="general" pageNo={this.pageNum} />} />
+          <Route exact path="/Business" element={<News category="business" pageNo={this.pageNum} />} />
+          <Route exact path="/Entertainment" element={<News category="entertainment" pageNo={this.pageNum} />} />
+          <Route exact path="/Health" element={<News category="health" pageNo={this.pageNum} />} />
+          <Route exact path="/Science" element={<News category="science" pageNo={this.pageNum} />} />
+          <Route exact path="/Sports" element={<News category="sports" pageNo={this.pageNum} />} />
+          <Route exact path="/Technology" element={<News category="technology" pageNo={this.pageNum} />} />
           <Route exact path="/About" element={<About/>}></Route>
           
         </Routes>
