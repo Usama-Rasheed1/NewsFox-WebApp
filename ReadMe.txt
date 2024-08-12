@@ -25,6 +25,6 @@ Replace the placeholder API key in `News.js` with your own key from [newsapi.org
 let url = `https://newsapi.org/v2/top-headlines?q=${this.props.category}&apiKey=YOUR_API_KEY`;
 
 
-For questions or feedback, please contact your email.
+For questions or feedback, please contact 'usamara760@gmail.com'.
 Feel free to adjust the content as needed and add any additional sections if required.
 Happy coding.
