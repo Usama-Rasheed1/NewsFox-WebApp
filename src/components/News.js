@@ -38,7 +38,7 @@ export class News extends Component{
     fetchArticles = async () => {
         const { category } = this.props;
         const { page } = this.state;
-        const url = `https://newsapi.org/v2/top-headlines?q=${category}&apiKey=8a333109df7045e4b0d4dbf0b1b9d221&page=${page}&pageSize=${this.props.pageNo}`;
+        const url = `https://newsapi.org/v2/top-headlines?q=${category}&apiKey=${this.props.apiKey}&page=${page}&pageSize=${this.props.pageNo}`;
         
         this.setState({ loading: true });
         const data = await fetch(url);
@@ -48,6 +48,7 @@ export class News extends Component{
             totalResults: parsedData.totalResults,
             loading: false
         });
+
     }
 
     handlePrevClick = async () => {
@@ -71,7 +72,7 @@ export class News extends Component{
 
         const { category } = this.props;
         const { page } = this.state;
-        const url = `https://newsapi.org/v2/top-headlines?q=${category}&apiKey=8a333109df7045e4b0d4dbf0b1b9d221&page=${page}&pageSize=${this.props.pageNo}`;
+        const url = `https://newsapi.org/v2/top-headlines?q=${category}&apiKey=${this.props.apiKey}&page=${page}&pageSize=${this.props.pageNo}`;
         const data = await fetch(url);
         const parsedData = await data.json();
         this.setState({
@@ -95,7 +96,7 @@ export class News extends Component{
                     <div className='container'>
                         <div className="row mt-4">
                             {this.state.articles.map((element) => {
-                                return <div className="col-md-4" key={element.url}>
+                                return <div className="col-md-4 col-sm-12" key={element.url}>
                                     <NewsItem
                                         title={element.title ? element.title.slice(0, 45) : ""}
                                         description={element.description ? element.description.slice(0, 88) : ""}
