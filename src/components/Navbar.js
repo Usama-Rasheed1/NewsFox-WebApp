@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './logo.jpg'; // Ensure the logo import is correct
 
-export class Navbar extends Component {
-  render() {
+const Navbar = ()=>{
+  
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-danger">
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-danger">
           <NavLink className="navbar-brand ms-2" to="/">
             <strong>NewsFox</strong>
           </NavLink>
@@ -77,7 +77,7 @@ export class Navbar extends Component {
         </nav>
       </div>
     );
-  }
+  
 }
 
 export default Navbar;
